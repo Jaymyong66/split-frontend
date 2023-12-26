@@ -1,5 +1,5 @@
 
-import { BrowserRouter as Router, Route, Switch, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Main from './pages/Main';
 import Layout from './pages/Layout';
 import Earn from './pages/Earn';
