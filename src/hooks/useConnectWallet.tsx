@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import { useAccount, useConnect, useNetwork, useSignMessage } from "wagmi";
-import { apiService } from "../api/api.service";
+import { apiService } from "../api/api.service.ts";
 import { SiweMessage } from "siwe";
 
 export enum LoginState {

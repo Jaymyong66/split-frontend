@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from './Header.module.css'
-import useConnectWallet from '../hooks/useConnectWallet';
+import useConnectWallet from '../hooks/useConnectWallet.tsx';
+
 
 export default function Header() {
   const { loginState, walletState, connectWalletHandler } = useConnectWallet();
