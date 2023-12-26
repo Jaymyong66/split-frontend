@@ -7,11 +7,14 @@
 	src: url(./assets/fonts/Inter-SemiBold.ttf);
   font-family: "googleInterSemiRegular";
 	src: url(./assets/fonts/Inter-Regular.ttf);
+  font-family: "googleInterLight";
+	src: url(./assets/fonts/Inter-Light.ttf);
 }
 
 :root {
 	--font-googleInterSemiBold: "googleInterSemiBold";
   --font-googleInterRegular: "googleInterSemiRegular";
+	--font-googleInterLight: "googleInterLight";
 	/* --font-googleSingleDay: "googleSingleDay"; */
 }
 

@@ -10,6 +10,30 @@
 }
 
 .nav {
+
+/*   width: 34.625rem;
+  display : flex;
+  justify-content : space-between;
+  align-items : center;
+  gap: 3.0625rem;
+}
+
+ul {
+  display : flex;
+  
+  align-items : center;
+  gap: 3.0625rem;
+}
+
+.li {
+  color: #000;
+  text-align: center;
+  font-family: Inter;
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal; */
+
   display: flex;
   gap: 20px;
   align-items: center;
@@ -19,17 +43,28 @@
   margin-left: 50px;
   gap: 50px;
   font-family: "Inter", sans-serif;
+
 }
 
 .button {
-  width: 120px;
-  height: 43px;
-  padding: 12px, 24px, 12px, 24px;
-  border-radius: 5px;
-  gap: 10px;
+  width: 11.8125rem;
+  height: 2.6875rem;
+  display: flex;
+  padding: 0.75rem 1.5rem;
+  align-items: center;
+  gap: 0.625rem;
+  border-radius: 0.3125rem;
   background: #032746;
+/*   color: #FFF;
+  font-family: Inter;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal; */
+
   color: white;
 }
+
 
 a {
   color: black;
