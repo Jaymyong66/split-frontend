@@ -21,7 +21,14 @@
   padding : 0 20px;
   margin-left: 50px;  
   gap:50px;
-  font-family: 'Inter', sans-serif;
+  
+  color: #000;
+  text-align: center;
+  font-family: Inter;
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
 }
 
 .button {
@@ -31,7 +38,12 @@
   border-radius: 5px;
   gap: 10px;
   background: #032746;
-  color : white;
+  color: #FFF;
+  font-family: Inter;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
 
 }
 

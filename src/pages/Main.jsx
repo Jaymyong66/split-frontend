@@ -2,6 +2,8 @@ import React from 'react'
 import Header from '../components/Header'
 import styled from "styled-components";
 
+
+
 const BodyContainer = styled.div`
   position: relative;
   display: flex;
@@ -11,11 +13,6 @@ const BodyContainer = styled.div`
   background: #032746;
   width: 100%;
   height: 100vh;
-  
-`;
-
-const MainContainer = styled.div`
-  position: relative;
 `;
 
 const LandingTextContainer = styled.div`
@@ -92,7 +89,7 @@ const BoldSpan = styled.span`
 
 export default function Main() {
   return (
-    <MainContainer>
+    <>
       <Header />
       <BodyContainer>
         <LandingTextContainer>
@@ -109,6 +106,6 @@ export default function Main() {
         </LandingButtonElseContainer>
         <LandingImage src="langingpage-image1.png" />
       </BodyContainer>
-    </MainContainer>
+    </>
   );
 }
