@@ -67,41 +67,59 @@ export default function Header() {
     <>
       <header className={styles.header}>
         <Link to="/">
-            <img src="logo-black.png" width="83px" />
-          </Link>
+          <img src="logo-black.png" width="83px" />
+        </Link>
 
         <nav className={styles.nav}>
-          <div
-            className={styles.navItem}
-            onMouseEnter={handleEarnMouseEnter}
-          >
+          <div className={styles.navItem} onMouseEnter={handleEarnMouseEnter}>
             <Link to="/earn">Earn</Link>
             <div
-              className={`${styles.underline} ${isEarnDropdownVisible ? styles.active : ''
-                }`}
+              className={`${styles.underline} ${
+                isEarnDropdownVisible ? styles.active : ""
+              }`}
             ></div>
             <div
-              className={`${styles.dropdownContent} ${isEarnDropdownVisible ? styles.active : ''
-                }`}
+              className={`${styles.dropdownContent} ${
+                isEarnDropdownVisible ? styles.active : ""
+              }`}
               onClick={handleDropdownClick}
             >
-              <div className={styles.subLinkContainer} onMouseLeave={handleEarnMouseLeave}>
+              <div
+                className={styles.subLinkContainer}
+                onMouseLeave={handleEarnMouseLeave}
+              >
                 <Link to="/">
                   <div className={styles.subLinkContents}>
-                    <img src="earn_1.png" width="40px" height="40px" alt="img" />
+                    <img
+                      src="earn_1.png"
+                      width="40px"
+                      height="40px"
+                      alt="img"
+                    />
                     <div>
                       <div className={styles.subLinkTitle}>Dashboard</div>
-                      <div className={styles.subLinkSubTitle}>Check your earnings so far through affiliate activities and transactions.</div>
+                      <div className={styles.subLinkSubTitle}>
+                        Check your earnings so far through affiliate activities
+                        and transactions.
+                      </div>
                     </div>
                   </div>
                 </Link>
 
-                 <Link to="/">
+                <Link to="/">
                   <div className={styles.subLinkContents}>
-                    <img src="earn_2.png" width="40px" height="40px" alt="img" />
+                    <img
+                      src="earn_2.png"
+                      width="40px"
+                      height="40px"
+                      alt="img"
+                    />
                     <div className={styles.subLinkTextContents}>
                       <div className={styles.subLinkTitle}>All Products</div>
-                      <div className={styles.subLinkSubTitle}>Promote and earn rewards by endorsing the products affiliated with Split.</div>
+                      <div className={styles.subLinkSubTitle}>
+                        Promote and earn rewards by endorsing the products
+                        affiliated with Split.
+                      </div>
                     </div>
                   </div>
                 </Link>
@@ -111,41 +129,72 @@ export default function Header() {
           <div className={styles.navItem}>
             <a href="/">Advertise</a>
             <div
-              className={`${styles.underline} ${isEarnDropdownVisible ? styles.active : ''
-                }`}
+              className={`${styles.underline} ${
+                isEarnDropdownVisible ? styles.active : ""
+              }`}
             ></div>
             <div
-              className={`${styles.dropdownContent} ${isEarnDropdownVisible ? styles.active : ''
-                }`}
+              className={`${styles.dropdownContent} ${
+                isEarnDropdownVisible ? styles.active : ""
+              }`}
               onClick={handleDropdownClick}
             >
-              <div className={styles.subLinkContainer} onMouseLeave={handleEarnMouseLeave}>
+              <div
+                className={styles.subLinkContainer}
+                onMouseLeave={handleEarnMouseLeave}
+              >
                 <Link to="/">
                   <div className={styles.subLinkContents}>
-                    <img src="earn_1.png" width="40px" height="40px" alt="img" />
+                    <img
+                      src="earn_1.png"
+                      width="40px"
+                      height="40px"
+                      alt="img"
+                    />
                     <div>
                       <div className={styles.subLinkTitle}>Dashboard</div>
-                      <div className={styles.subLinkSubTitle}>Monitor the advertising performance of your registered products and manage the reward pool.</div>
+                      <div className={styles.subLinkSubTitle}>
+                        Monitor the advertising performance of your registered
+                        products and manage the reward pool.
+                      </div>
                     </div>
                   </div>
                 </Link>
 
                 <Link to="/">
                   <div className={styles.subLinkContents}>
-                    <img src="adver_2.png" width="40px" height="40px" alt="img" />
+                    <img
+                      src="adver_2.png"
+                      width="40px"
+                      height="40px"
+                      alt="img"
+                    />
                     <div className={styles.subLinkTextContents}>
-                      <div className={styles.subLinkTitle}>Register Products</div>
-                      <div className={styles.subLinkSubTitle}>Enlist your product on Split and start promoting it to a broader audience.</div>
+                      <div className={styles.subLinkTitle}>
+                        Register Products
+                      </div>
+                      <div className={styles.subLinkSubTitle}>
+                        Enlist your product on Split and start promoting it to a
+                        broader audience.
+                      </div>
                     </div>
                   </div>
                 </Link>
 
-               <Link to="/">
+                <Link to="/">
                   <div className={styles.subLinkContents}>
-                    <img src="adver_3.png" width="40px" height="40px" alt="img" />
+                    <img
+                      src="adver_3.png"
+                      width="40px"
+                      height="40px"
+                      alt="img"
+                    />
                     <div className={styles.subLinkTextContents}>
                       <div className={styles.subLinkTitle}>Developers</div>
-                      <div className={styles.subLinkSubTitle}>Manage your API keys and learn how to integrate the Split SDK into your product for enhanced functionality.</div>
+                      <div className={styles.subLinkSubTitle}>
+                        Manage your API keys and learn how to integrate the
+                        Split SDK into your product for enhanced functionality.
+                      </div>
                     </div>
                   </div>
                 </Link>
@@ -153,21 +202,28 @@ export default function Header() {
             </div>
           </div>
           <div className={styles.navItem}>
-           <Link to="/">Resource</Link>
+            <Link to="/">Resource</Link>
             <div
-              className={`${styles.underline} ${isEarnDropdownVisible ? styles.active : ''
-                }`}
+              className={`${styles.underline} ${
+                isEarnDropdownVisible ? styles.active : ""
+              }`}
             ></div>
             <div
-              className={`${styles.dropdownContent} ${isEarnDropdownVisible ? styles.active : ''
-                }`}
+              className={`${styles.dropdownContent} ${
+                isEarnDropdownVisible ? styles.active : ""
+              }`}
               onClick={handleDropdownClick}
             >
-              <div className={styles.subLinkContainer} onMouseLeave={handleEarnMouseLeave}>
+              <div
+                className={styles.subLinkContainer}
+                onMouseLeave={handleEarnMouseLeave}
+              >
                 <Link to="/">
                   <div className={styles.subLinkContents}>
                     <div>
-                      <div className={styles.subLinkSubTitle}>Sorry, It’s under preparation.</div>
+                      <div className={styles.subLinkSubTitle}>
+                        Sorry, It’s under preparation.
+                      </div>
                     </div>
                   </div>
                 </Link>
@@ -178,8 +234,11 @@ export default function Header() {
         {loginState === "done" ? (
           <button
             disable={loginState === "progress"}
-            className={styled.button}
+            className={styles.button}
             onClick={connectWalletHandler}
+            style={{
+              display: "flex",
+            }}
           >
             <img src="WalletIcon.png" />
             {`${walletState.slice(0, 6)}...${walletState.slice(-4)}`}
@@ -187,8 +246,11 @@ export default function Header() {
         ) : (
           <button
             disable={loginState === "progress"}
-            className={styled.button}
+            className={styles.button}
             onClick={connectWalletHandler}
+            style={{
+              display: "block",
+            }}
           >
             Sign in
           </button>
