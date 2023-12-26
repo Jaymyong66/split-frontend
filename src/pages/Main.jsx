@@ -1,5 +1,7 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styled from "styled-components";
+import useAddressStore from '../stores/store';
+import useConnectWallet from '../hooks/useConnectWallet.tsx';
 
 
 
@@ -87,6 +89,22 @@ const BoldSpan = styled.span`
 
 
 export default function Main() {
+  const { address, setAddress } = useAddressStore();
+  const { loginState, walletState, connectWalletHandler } = useConnectWallet();
+
+  useEffect(() => {
+    setAddress(walletState);
+    console.log("addresss : " + address);
+  }, [loginState, walletState]);
+
+  const handleClick = () => {
+    if (address === "") {
+      connectWalletHandler();
+    }
+    else {
+      console.log("address : " + address);
+    }
+  };
   return (
     <>
       <BodyContainer>
@@ -99,7 +117,7 @@ export default function Main() {
           <BoldSpan>Connect Wallet</BoldSpan>.
         </LandingButtonGuide>
         <LandingButtonElseContainer>
-          <LandingButton>Get Started {"\b >"} </LandingButton>
+          <LandingButton onClick={handleClick}>Get Started {"\b >"} </LandingButton>
           <SecondButton>Documantation {"\b >"} </SecondButton>
         </LandingButtonElseContainer>
         <LandingImage src="langingpage-image1.png" />

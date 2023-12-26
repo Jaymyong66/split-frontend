@@ -1,12 +1,18 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import useConnectWallet from '../hooks/useConnectWallet.tsx';
 import { Link } from 'react-router-dom';
 import styles from './Header.module.css';
+import useAddressStore from '../stores/store.js';
 
 
 export default function Header() {
   const { loginState, walletState, connectWalletHandler } = useConnectWallet();
   const [isEarnDropdownVisible, setEarnDropdownVisible] = useState(false);
+  const { address, setAddress } = useAddressStore();
+
+  useEffect(() => {setAddress(walletState);
+    console.log("addresss : " + address);
+  }, [loginState, walletState]);
 
   const handleEarnMouseEnter = () => {
     setEarnDropdownVisible(true);
@@ -19,6 +25,8 @@ export default function Header() {
   const handleDropdownClick = (event) => {
     event.stopPropagation();
   };
+
+  
 
   return (
     <>
