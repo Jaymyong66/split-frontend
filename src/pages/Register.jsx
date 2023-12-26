@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import MiddleBar from '../components/MiddleBar';
 import styled from 'styled-components';
 import { useNavigate } from "react-router-dom";
+import axios from 'axios';
 
 const RegisterStepContainer = styled.div`
   width: 100%;
@@ -38,7 +39,7 @@ const FormContainer = styled.div`
 
 const RegisterForm = styled.form`
   width: 77rem;
-  // background: blue;
+  /* background: blue; */
   display: flex;
   flex-direction: column;
 `;
@@ -122,22 +123,118 @@ const Step3GuideText = styled.div`
   font-size: 15px;
 `;
 
+const RowContainer = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+`;
+
 
 export default function Register() {
-  const [step, setStep] = useState(1)
+  const [step, setStep] = useState(1);
+  const [sdkKey, setSdkKey] = useState('');
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const [productInfo, setProductInfo] = useState({
+    name: '',
+    webLink: '',
+    twitterLink: '',
+    description: '',
+  });
+  const [transactions, setTransactions] = useState([
+    {
+      txNetwork: '',
+      targetAddress: '',
+      txData: '',
+      incentiveNetwork: '',
+      incentiveTokenAddress: '',
+      incentiveTokenAmountPerTx: '',
+    },
+  ]);
 
-  const handleFormSubmit = (event) => {
+  // const handleFormSubmit = (event) => {
 
-    // setStep((prevStep) => ((prevStep + 1) % 4) === 0 ? 1 : prevStep + 1);
-    setStep((prevStep) => prevStep + 1);
+  //   // setStep((prevStep) => ((prevStep + 1) % 4) === 0 ? 1 : prevStep + 1);
+  //   setStep((prevStep) => prevStep + 1);
 
-    event.preventDefault();
+  //   event.preventDefault();
+  // };
+
+  const handleInputChange = (field, value, index = 0) => {
+    if (field === 'transactions') {
+      const updatedTransactions = [...transactions];
+      updatedTransactions[index] = { ...updatedTransactions[index], [value.field]: value.value };
+      setTransactions(updatedTransactions);
+    } else {
+      setProductInfo({ ...productInfo, [field]: value });
+    }
   };
 
-  const handleClick = () => {
-    navigate("/earn");
+  const handleClickBefore = () => {
+    setStep((prevStep) => prevStep - 1);
   }
+
+  const handleClickNext = () => {
+    setStep((prevStep) => prevStep + 1);
+  }
+
+  const handleClickGetKey = async () => {
+    setLoading(true);
+    setStep((prevStep) => prevStep + 1);
+    const accessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZGRyZXNzIjoiMHg3NDc2NDk0YWFkODBhNTA0MTczMzY0ZThlZDBiYzFjNjViZDg2NjBiIiwiaWF0IjoxNzAzNjI5NTM2LCJleHAiOjE4MDM2Mjk1MzZ9.8u5vaQmT4CU-JEsCZqpOvCNTDIfYeg0qz8zVK5G-Vis";
+
+    const productData = {
+      name: productInfo.name,
+      webLink: productInfo.webLink,
+      twitterLink: productInfo.twitterLink,
+      description: productInfo.description,
+      transactions: transactions.map((transaction) => ({
+        txNetwork: transaction.txNetwork,
+        targetAddress: transaction.targetAddress,
+        txData: transaction.txData,
+        incentiveNetwork: transaction.incentiveNetwork,
+        incentiveTokenAddress: transaction.incentiveTokenAddress,
+        incentiveTokenAmountPerTx: transaction.incentiveTokenAmountPerTx,
+      })),
+    };
+
+    console.log(productData);
+
+    try {
+      const productRes = await axios.post('http://localhost:8000/product', productData, {
+        headers: {
+          'Authorization': `Bearer ${accessToken}`,
+        }
+      });
+
+
+      try {
+        const deployRes = await axios.post(`http://localhost:8000/product/deploy?id=${productRes.data.id}`, null, {
+          headers: {
+            'Authorization': `Bearer ${accessToken}`,
+          }
+        });
+        setSdkKey(deployRes.data.apiKey);
+
+      } catch (error) {
+        console.error('Error deploying product:', error);
+      } finally {
+        setLoading(false);
+      }
+
+    } catch (error) {
+      console.error('Error registering product:', error);
+    }
+  }
+
+  const handleClick = () => {
+    alert('successfully copied!!');
+  };
+
+  const handleAgain = () => {
+    setStep(1);
+  };
 
   return (
     <>
@@ -169,27 +266,32 @@ export default function Register() {
         </RegisterStep>
       </RegisterStepContainer>
       <FormContainer>
-        <RegisterForm onSubmit={handleFormSubmit}>
+        <RegisterForm>
           {step === 1 && (
             <InputContainer>
-              {/* <InputLabel htmlFor="product-name">Product Name</InputLabel> */}
               <InputWindow
                 type="text"
                 id="product-name"
                 name="product-name"
                 placeholder="Product Name"
+                value={productInfo.name}
+                onChange={(e) => handleInputChange('name', e.target.value)}
               />
               <InputWindow
                 type="text"
                 id="web-link"
                 name="web-link"
                 placeholder="Web Link"
+                value={productInfo.webLink}
+                onChange={(e) => handleInputChange('webLink', e.target.value)}
               />
               <InputWindow
                 type="text"
                 id="twitter-link"
                 name="twitter-link"
                 placeholder="Twitter Link"
+                value={productInfo.twitterLink}
+                onChange={(e) => handleInputChange('twitterLink', e.target.value)}
               />
               <InputWindow
                 type="text"
@@ -197,10 +299,14 @@ export default function Register() {
                 name="description"
                 placeholder="Description"
                 style={{
-                  height: "10rem",
+                  height: '3rem',
                 }}
+                value={productInfo.description}
+                onChange={(e) => handleInputChange('description', e.target.value)}
               />
-              <SubmitButton type="submit">Next Step</SubmitButton>
+              <SubmitButton type="button" onClick={handleClickNext}>
+                Next Step
+              </SubmitButton>
             </InputContainer>
           )}
 
@@ -210,21 +316,43 @@ export default function Register() {
               <InputContainer>
                 <InputWindow
                   type="text"
+                  id="txnetwork"
+                  name="txnetwork"
+                  placeholder="Tx Network"
+                  value={transactions[0].txNetwork}
+                  onChange={(e) => handleInputChange('transactions', { field: 'txNetwork', value: e.target.value })}
+                />
+                <InputWindow
+                  type="text"
                   id="incentive-network"
                   name="incentive-network"
                   placeholder="Incentive Network"
+                  value={transactions[0].incentiveNetwork}
+                  onChange={(e) => handleInputChange('transactions', { field: 'incentiveNetwork', value: e.target.value })}
                 />
                 <InputWindow
                   type="text"
                   id="incentive-tokenAddress"
                   name="incentive-tokenAddress"
                   placeholder="Incentive Token Address"
+                  value={transactions[0].incentiveTokenAddress}
+                  onChange={(e) => handleInputChange('transactions', { field: 'incentiveTokenAddress', value: e.target.value })}
                 />
                 <InputWindow
                   type="text"
                   id="target-address"
                   name="target-address"
                   placeholder="Target Address"
+                  value={transactions[0].targetAddress}
+                  onChange={(e) => handleInputChange('transactions', { field: 'targetAddress', value: e.target.value })}
+                />
+                <InputWindow
+                  type="text"
+                  id="incentive-tokenAmount-per-tx"
+                  name="incentive-tokenAmount-per-tx"
+                  placeholder="Incentive Token Amount Per Tx"
+                  value={transactions[0].incentiveTokenAmountPerTx}
+                  onChange={(e) => handleInputChange('transactions', { field: 'incentiveTokenAmountPerTx', value: e.target.value })}
                 />
                 <InputWindow
                   type="text"
@@ -232,24 +360,49 @@ export default function Register() {
                   name="tx-data"
                   placeholder="Transaction Data"
                   style={{
-                    height: "10rem",
+                    height: '10rem',
                   }}
+                  value={transactions[0].txData}
+                  onChange={(e) => handleInputChange('transactions', { field: 'txData', value: e.target.value })}
                 />
-                <SubmitButton type="submit">Next Step</SubmitButton>
+                <RowContainer>
+                  <SubmitButton type="button" onClick={handleClickBefore}>
+                    Previous Step
+                  </SubmitButton>
+                  <SubmitButton type="button" onClick={handleClickGetKey}>
+                    Deploy & Get SDK-key
+                  </SubmitButton>
+                </RowContainer>
               </InputContainer>
             </Step2Container>
           )}
           {step === 3 && (
             <Step3GuideContainer>
-              <Step3GuideText>SDK Key : "ddd"</Step3GuideText>
-              <Step3GuideText
-                style={{
-                  height: "20rem",
-                }}
-              >
-                SDK GUIDE  Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia velit nihil itaque. Alias impedit pariatur, est asperiores, sequi excepturi, facere magnam sapiente a ipsam labore dolores nisi quod accusamus voluptatum.
-              </Step3GuideText>
-              <SubmitButton type="button" onClick={handleClick}>Complete</SubmitButton>
+              {loading ? (
+                <p>Loading...</p>
+              ) : (
+                <>
+                  <Step3GuideText>SDK Key: {sdkKey}</Step3GuideText>
+                  <Step3GuideText
+                    style={{
+                      height: "20rem",
+                    }}
+                  >
+                    <img src='example.png' alt="example" width="600rem" height="250rem" margin="0 auto" />
+
+                  </Step3GuideText>
+                  <RowContainer>
+                    <SubmitButton type="button" onClick={handleAgain}>
+                      Try Again
+                    </SubmitButton>
+                    <SubmitButton type="button" onClick={handleClick}>
+                      Copy SDK Key
+                    </SubmitButton>
+
+                  </RowContainer>
+
+                </>
+              )}
             </Step3GuideContainer>
           )}
         </RegisterForm>
