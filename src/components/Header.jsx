@@ -67,7 +67,7 @@ export default function Header() {
     <>
       <header className={styles.header}>
         <Link to="/">
-          <img src="logo-black.png" width="100px"  height="100px" alt='logo'/>
+          <img src="logo-black.png" width="90px"  height="80px" alt='logo'/>
         </Link>
 
         <nav className={styles.nav}>

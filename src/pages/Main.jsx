@@ -19,8 +19,8 @@ const LandingTextContainer = styled.div`
   position: absolute;
   left: 8%;
   top: 15%;
-  width: 100%;
-  height: 100%;
+  width: 1000px;
+  height: auto;
 `;
 
 const Maintitle = styled.div`
@@ -32,7 +32,7 @@ const Maintitle = styled.div`
 
 const Subtitle = styled.div`
   position: absolute;
-  top:13%;
+  top: 100px;
   color: white;
   font-family: var(--font-googleInterRegular);
   font-size: 30px;
