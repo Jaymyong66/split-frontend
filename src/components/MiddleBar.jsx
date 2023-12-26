@@ -34,12 +34,13 @@ const Subtitle = styled.div`
   font-size: 15px;
 `;
 
-export default function MiddleBar() {
+export default function MiddleBar(props) {
+  const middleTitle = props.title;
   return (
     <MainContainer>
       <BodyContainer>
         <ContentContainer>
-          <Maintitle>Dashboards</Maintitle>
+          <Maintitle>{middleTitle}</Maintitle>
           <Subtitle>
             Check your earnings so far through affiliate activities and
             transactions.

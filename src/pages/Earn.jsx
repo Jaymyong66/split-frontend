@@ -15,7 +15,7 @@ const BodyContainer = styled.div`
 export default function Earn() {
   return (
     <>
-      <MiddleBar />
+      <MiddleBar title={"Dashboards"} />
       <BodyContainer>
         <TotalActivity />
         <Products />
