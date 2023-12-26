@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Main from './pages/Main';
 import Layout from './pages/Layout';
 import Earn from './pages/Earn';
+import Register from './pages/Register';
 
 
 
@@ -24,6 +25,14 @@ function App() {
             element={
               <Layout>
                 <Earn />
+              </Layout>
+            }
+          />
+          <Route
+            path="/register"
+            element={
+              <Layout>
+                <Register />
               </Layout>
             }
           />

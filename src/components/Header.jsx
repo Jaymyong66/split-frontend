@@ -106,7 +106,7 @@ export default function Header() {
                   </div>
                 </Link>
 
-                <Link to="/">
+                <Link to="/earn">
                   <div className={styles.subLinkContents}>
                     <img
                       src="earn_2.png"
@@ -143,7 +143,7 @@ export default function Header() {
                 className={styles.subLinkContainer}
                 onMouseLeave={handleEarnMouseLeave}
               >
-                <Link to="/">
+                <Link to="/earn">
                   <div className={styles.subLinkContents}>
                     <img
                       src="earn_1.png"
@@ -161,7 +161,7 @@ export default function Header() {
                   </div>
                 </Link>
 
-                <Link to="/">
+                <Link to="/register">
                   <div className={styles.subLinkContents}>
                     <img
                       src="adver_2.png"
