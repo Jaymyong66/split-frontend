@@ -90,7 +90,6 @@ const BoldSpan = styled.span`
 export default function Main() {
   return (
     <>
-      <Header />
       <BodyContainer>
         <LandingTextContainer>
           <Maintitle>The First Web3 Affiliate Marketing</Maintitle>

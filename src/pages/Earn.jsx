@@ -16,7 +16,6 @@ const BodyContainer = styled.div`
 export default function Earn() {
   return (
     <>
-      <Header />
       <MiddleBar />
       <BodyContainer>
         <TotalActivity />

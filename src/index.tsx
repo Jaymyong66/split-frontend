@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Router, Routes } from "react-router-dom";
 import Login from "./pages/Login";
 import "./index.css";
 import { WagmiConfig } from 'wagmi';
@@ -15,13 +15,10 @@ const root = ReactDOM.createRoot(
 root.render(
   <WagmiConfig config={wagmiConfig}>
     <React.StrictMode>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<App />} />
-          <Route path="/earn" element={<Earn />} />
-          <Route path="/login" element={<Login />} />
-        </Routes>
-      </BrowserRouter>
+    
+        <App />
+    
+      ,
     </React.StrictMode>
   </WagmiConfig>
 );
