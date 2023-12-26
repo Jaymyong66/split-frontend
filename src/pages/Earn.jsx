@@ -1,5 +1,4 @@
 import React from 'react'
-import Header from '../components/Header'
 import MiddleBar from '../components/MiddleBar'
 import styled from 'styled-components';
 import TotalActivity from '../components/TotalActivity';

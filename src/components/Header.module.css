@@ -44,6 +44,7 @@ ul {
   gap: 50px;
   font-family: "Inter", sans-serif;
 
+
 }
 
 .button {
@@ -101,6 +102,7 @@ a:active {
 
   a:hover {
     background-color: #f1f1f1;
+    display: block;
   }
 }
 
@@ -123,9 +125,9 @@ a:active {
   &:active .underline {
     display: block;
   }
-
-  
 }
+
+
 
 .underline {
   display: none;

@@ -10,7 +10,7 @@ const MainContainer = styled.div`
 `;
 
 const Maintitle = styled.div`
-  position: absolute;
+  
   color: black;
   font-family: var(--font-googleInterRegular);
   font-size: 20px;
@@ -40,6 +40,29 @@ const NumberContnent = styled.span`
   font-size: 20px;
 `;
 
+const TitleTextContainer = styled.div`
+  display: flex;
+  gap: 0.625rem;
+  align-items: center;
+`;
+
+const QuestionImage = styled.img`
+  margin-bottom: 3px;
+`;
+
+const MainTitleContainer = styled.div`
+  display: flex;
+  justify-content: space-between;`;
+
+const DataTextContainer = styled.div`
+  color: var(--Black-Black---07, #7e7e7e);
+  text-align: center;
+  font-family: Inter;
+  font-size: 0.625rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+`;
 
 export default function TotalActivity__month(props) {
   const [
@@ -58,7 +81,15 @@ export default function TotalActivity__month(props) {
 
   return (
     <MainContainer>
-      <Maintitle>{title}</Maintitle>
+      <MainTitleContainer>
+        <TitleTextContainer>
+          <Maintitle>{title}</Maintitle>
+          <QuestionImage src="LabelIcon.svg" />
+        </TitleTextContainer>
+        <DataTextContainer>
+          Recent Update: 2023-12-26 09:00:00
+        </DataTextContainer>
+      </MainTitleContainer>
       <BodyContainer>
         <ContentContainer>
           <span>Total Earned {"(in USDC)"} </span>
