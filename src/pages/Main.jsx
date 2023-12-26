@@ -14,6 +14,7 @@ const BodyContainer = styled.div`
   background: #032746;
   width: 100%;
   height: 100vh;
+  z-index: -1;
 `;
 
 const LandingTextContainer = styled.div`
@@ -68,8 +69,13 @@ const SecondButton = styled(LandingButton)`
 const LandingImage = styled.img`
   position: absolute;
   width: 600px;
-  top : 30%;  
-  left : 45%;
+  top: 30%;
+  left: 45%;
+  z-index: -2;
+
+  @media (max-width: 900px) {
+    display: none;
+  }
 `;
 
 const LandingButtonGuide = styled.div`

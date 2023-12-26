@@ -241,13 +241,13 @@ export default function Register() {
           )}
           {step === 3 && (
             <Step3GuideContainer>
-              <Step3GuideText>SDK Key</Step3GuideText>
+              <Step3GuideText>SDK Key : "ddd"</Step3GuideText>
               <Step3GuideText
                 style={{
                   height: "20rem",
                 }}
               >
-                SDK GUIDE
+                SDK GUIDE  Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia velit nihil itaque. Alias impedit pariatur, est asperiores, sequi excepturi, facere magnam sapiente a ipsam labore dolores nisi quod accusamus voluptatum.
               </Step3GuideText>
               <SubmitButton type="button" onClick={handleClick}>Complete</SubmitButton>
             </Step3GuideContainer>
