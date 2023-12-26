@@ -1,27 +1,139 @@
-import React from 'react'
-import styled from './Header.module.css'
+import React, { useState } from 'react';
 import useConnectWallet from '../hooks/useConnectWallet.tsx';
+import styles from './Header.module.css';
 
 
 export default function Header() {
   const { loginState, walletState, connectWalletHandler } = useConnectWallet();
-  
+  const [isEarnDropdownVisible, setEarnDropdownVisible] = useState(false);
+
+  const handleEarnMouseEnter = () => {
+    setEarnDropdownVisible(true);
+  };
+
+  const handleEarnMouseLeave = () => {
+    setEarnDropdownVisible(false);
+  };
+
+  const handleDropdownClick = (event) => {
+    event.stopPropagation();
+  };
+
   return (
     <>
-      <header className={styled.header}>
+      <header className={styles.header}>
         <a href="/">
-          <img 
-            src="logo-black.png"
-            width="80px"
-          />
+          <img src="logo-black.png" width="80px" alt="Logo" />
         </a>
 
-        <nav className={styled.nav}>
-          <a href="/">Earn</a>
-          <a href="/login">Advertise</a>
-          <a href="/login">Resourse</a>
+        <nav className={styles.nav}>
+          <div
+            className={styles.navItem}
+            onMouseEnter={handleEarnMouseEnter}
+          >
+            <a href="/">Earn</a>
+            <div
+              className={`${styles.underline} ${isEarnDropdownVisible ? styles.active : ''
+                }`}
+            ></div>
+            <div
+              className={`${styles.dropdownContent} ${isEarnDropdownVisible ? styles.active : ''
+                }`}
+              onClick={handleDropdownClick}
+            >
+              <div className={styles.subLinkContainer} onMouseLeave={handleEarnMouseLeave}>
+                <a href="/earn">
+                  <div className={styles.subLinkContents}>
+                    <img src="earn_1.png" width="40px" height="40px" alt="img" />
+                    <div>
+                      <div className={styles.subLinkTitle}>Dashboard</div>
+                      <div className={styles.subLinkSubTitle}>Check your earnings so far through affiliate activities and transactions.</div>
+                    </div>
+                  </div>
+                </a>
+
+                <a href="/">
+                  <div className={styles.subLinkContents}>
+                    <img src="earn_2.png" width="40px" height="40px" alt="img" />
+                    <div className={styles.subLinkTextContents}>
+                      <div className={styles.subLinkTitle}>All Products</div>
+                      <div className={styles.subLinkSubTitle}>Promote and earn rewards by endorsing the products affiliated with Split.</div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div className={styles.navItem}>
+            <a href="/">Advertise</a>
+            <div
+              className={`${styles.underline} ${isEarnDropdownVisible ? styles.active : ''
+                }`}
+            ></div>
+            <div
+              className={`${styles.dropdownContent} ${isEarnDropdownVisible ? styles.active : ''
+                }`}
+              onClick={handleDropdownClick}
+            >
+              <div className={styles.subLinkContainer} onMouseLeave={handleEarnMouseLeave}>
+                <a href="/earn">
+                  <div className={styles.subLinkContents}>
+                    <img src="earn_1.png" width="40px" height="40px" alt="img" />
+                    <div>
+                      <div className={styles.subLinkTitle}>Dashboard</div>
+                      <div className={styles.subLinkSubTitle}>Monitor the advertising performance of your registered products and manage the reward pool.</div>
+                    </div>
+                  </div>
+                </a>
+
+                <a href="/">
+                  <div className={styles.subLinkContents}>
+                    <img src="adver_2.png" width="40px" height="40px" alt="img" />
+                    <div className={styles.subLinkTextContents}>
+                      <div className={styles.subLinkTitle}>Register Products</div>
+                      <div className={styles.subLinkSubTitle}>Enlist your product on Split and start promoting it to a broader audience.</div>
+                    </div>
+                  </div>
+                </a>
+
+                <a href="/">
+                  <div className={styles.subLinkContents}>
+                    <img src="adver_3.png" width="40px" height="40px" alt="img" />
+                    <div className={styles.subLinkTextContents}>
+                      <div className={styles.subLinkTitle}>Developers</div>
+                      <div className={styles.subLinkSubTitle}>Manage your API keys and learn how to integrate the Split SDK into your product for enhanced functionality.</div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div className={styles.navItem}>
+            <a href="/login">Resource</a>
+            <div
+              className={`${styles.underline} ${isEarnDropdownVisible ? styles.active : ''
+                }`}
+            ></div>
+            <div
+              className={`${styles.dropdownContent} ${isEarnDropdownVisible ? styles.active : ''
+                }`}
+              onClick={handleDropdownClick}
+            >
+              <div className={styles.subLinkContainer} onMouseLeave={handleEarnMouseLeave}>
+                <a href="/">
+                  <div className={styles.subLinkContents}>
+                    <div>
+                      <div className={styles.subLinkSubTitle}>Sorry, It’s under preparation.</div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
         </nav>
-        <button className={styled.button} onClick={connectWalletHandler}>Sign in</button>
+        <button className={styles.button} onClick={connectWalletHandler}>
+          Sign in
+        </button>
       </header>
     </>
   );
