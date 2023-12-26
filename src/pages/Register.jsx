@@ -9,7 +9,7 @@ const RegisterStepContainer = styled.div`
   justify-content: center;
   align-items: center;
   gap: 1rem;
-  margin-top: 1rem;
+  margin-top: 3rem;
 `;
 
 const RegisterStep = styled.div`
@@ -132,7 +132,7 @@ export default function Register() {
     // setStep((prevStep) => ((prevStep + 1) % 4) === 0 ? 1 : prevStep + 1);
     setStep((prevStep) => prevStep + 1);
 
-    event.preventDefault(); // 기본 제출 동작 방지
+    event.preventDefault();
   };
 
   const handleClick = () => {
@@ -241,13 +241,13 @@ export default function Register() {
           )}
           {step === 3 && (
             <Step3GuideContainer>
-              <Step3GuideText>SDK Key</Step3GuideText>
+              <Step3GuideText>SDK Key : "ddd"</Step3GuideText>
               <Step3GuideText
                 style={{
                   height: "20rem",
                 }}
               >
-                SDK GUIDE
+                SDK GUIDE  Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia velit nihil itaque. Alias impedit pariatur, est asperiores, sequi excepturi, facere magnam sapiente a ipsam labore dolores nisi quod accusamus voluptatum.
               </Step3GuideText>
               <SubmitButton type="button" onClick={handleClick}>Complete</SubmitButton>
             </Step3GuideContainer>

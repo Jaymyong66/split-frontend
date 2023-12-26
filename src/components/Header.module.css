@@ -10,30 +10,6 @@
 }
 
 .nav {
-
-/*   width: 34.625rem;
-  display : flex;
-  justify-content : space-between;
-  align-items : center;
-  gap: 3.0625rem;
-}
-
-ul {
-  display : flex;
-  
-  align-items : center;
-  gap: 3.0625rem;
-}
-
-.li {
-  color: #000;
-  text-align: center;
-  font-family: Inter;
-  font-size: 1.25rem;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal; */
-
   display: flex;
   gap: 20px;
   align-items: center;

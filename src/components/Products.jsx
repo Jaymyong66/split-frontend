@@ -50,22 +50,6 @@ const CardContainer = styled.div`
   flex-wrap: wrap;
 `;
 
-// const productCards = [
-//   {
-//     cardType: "affiliate",
-//     cardData: {
-//       productName: "NameCard.io",
-//       earned: 3.5,
-//       claimed: 0,
-//       eligibility: false,
-//       claimable: 0,
-//     },
-//   },
-// ];
-
-
-
-
 export default function Products() {
   const [selectedOption, setSelectedOption] = useState("allOptions");
 
@@ -74,6 +58,19 @@ export default function Products() {
       prevOption === option ? "allOptions" : option
     );
   };
+
+  // const productCards = [
+  //   {
+  //     cardType: "affiliate",
+  //     cardData: {
+  //       productName: "NameCard.io",
+  //       earned: 3.5,
+  //       claimed: 0,
+  //       eligibility: false,
+  //       claimable: 0,
+  //     },
+  //   },
+  // ];
 
   const productCards = [
     {
@@ -189,32 +186,17 @@ export default function Products() {
                 ></Product__Card>
               );
             })}
-          {/* {affiliateProduct.length > 0 &&
-            affiliateProduct.map((productData) => {
-              return (
-                <Product__Card
-                  type={"affiliate"}
-                  data={productData}
-                ></Product__Card>
-              );
-            })} */}
           {(selectedOption === "allOptions" || selectedOption === "user") &&
             userRewards.length > 0 &&
             userRewards.map((productData, index) => {
               return (
                 <Product__Card
                   key={index}
-                  type={"user"} data={productData}></Product__Card>
+                  type={"user"}
+                  data={productData}
+                ></Product__Card>
               );
             })}
-          {/* {userRewards.length > 0 &&
-            userRewards.map((productData) => {
-              return (
-                <Product__Card type={"user"} data={productData}></Product__Card>
-              );
-            })} */}
-          {/* <Product__Card data={productCards}></Product__Card>
-          <Product__Card data={productCards}></Product__Card> */}
         </CardContainer>
       </BodyContainer>
     </MainContainer>
