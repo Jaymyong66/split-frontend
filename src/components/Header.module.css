@@ -50,19 +50,22 @@ ul {
   width: 11.8125rem;
   height: 2.6875rem;
   display: flex;
-  padding: 0.75rem 1.5rem;
-  align-items: center;
   gap: 0.625rem;
+  
+  
+  padding: 0.75rem 1.5rem;
   border-radius: 0.3125rem;
   background: #032746;
-/*   color: #FFF;
+  text-align: center;
+  
+  color: #FFF;
   font-family: Inter;
   font-size: 1rem;
   font-style: normal;
   font-weight: 500;
-  line-height: normal; */
+  line-height: normal;
 
-  color: white;
+
 }
 
 
@@ -103,6 +106,13 @@ a:active {
 
 .navItem {
   position: relative;
+  color: #000;
+  text-align: center;
+  font-family: Inter;
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
   
   &:hover .dropdownContent,
   &:active .dropdownContent {
@@ -113,6 +123,8 @@ a:active {
   &:active .underline {
     display: block;
   }
+
+  
 }
 
 .underline {
