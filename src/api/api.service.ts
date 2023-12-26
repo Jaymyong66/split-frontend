@@ -8,7 +8,7 @@ export interface AuthTokens {
 
 class ApiService {
   private readonly apiInstance = axios.create({
-    baseURL: process.env.NEXT_PUBLIC_SERVER_URL,
+    baseURL: process.env.REACT_APP_NEXT_PUBLIC_SERVER_URL,
     headers: {
       "content-type": "application/json;charset=UTF-8",
       accept: "application/json,",
