@@ -88,7 +88,7 @@ export default function Header() {
                 className={styles.subLinkContainer}
                 onMouseLeave={handleEarnMouseLeave}
               >
-                <Link to="/">
+                <Link to="/earn">
                   <div className={styles.subLinkContents}>
                     <img
                       src="earn_1.png"
