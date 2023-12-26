@@ -2,11 +2,11 @@ import React from 'react'
 import styled from 'styled-components'
 
 const MainContainer = styled.div`
-  width: 635px;
+  width: 100%;
   height: 85%;
   display: flex;
   flex-direction: column;
-  margin: 20px;
+  margin: 20px 0px;
 `;
 
 const Maintitle = styled.div`

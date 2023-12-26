@@ -13,7 +13,7 @@ const MainContainer = styled.div`
 `;
 
 const BodyContainer = styled.div`
-  width: 90%;
+  width: 80%;
   // background-color: blue;
   height: 100%;
 `;

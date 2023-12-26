@@ -8,16 +8,17 @@ const MainContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+
 `;
 
 const BodyContainer = styled.div`
-  width: 90%;
+  width: 80%;
   height: 323px;
   margin-top: 20px;
   display: flex;
-  justify-content: center;
   align-items: center;
-  
+  gap: 50px;
+  justify-content: space-between;
 `;
 
 const GetEarnDashboardRes =  {
