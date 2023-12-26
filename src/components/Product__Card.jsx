@@ -111,9 +111,6 @@ const ClaimButton = styled.button`
 export default function Product__Card(props) {
   const productDatas = props.data;
   const productType = props.type;
-
-  console.log(productDatas);
-  console.log(productType);
     
   const formatValue = (value) => (value === 0 ? "-" : value);
   const formatEligibility = (value) => (value === true ? "Available" : "Unavailable");

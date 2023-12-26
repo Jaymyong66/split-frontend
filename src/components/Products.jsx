@@ -180,9 +180,10 @@ export default function Products() {
           {(selectedOption === "allOptions" ||
             selectedOption === "affiliate") &&
             affiliateProduct.length > 0 &&
-            affiliateProduct.map((productData) => {
+            affiliateProduct.map((productData, index) => {
               return (
                 <Product__Card
+                  key={index}
                   type={"affiliate"}
                   data={productData}
                 ></Product__Card>
@@ -199,9 +200,11 @@ export default function Products() {
             })} */}
           {(selectedOption === "allOptions" || selectedOption === "user") &&
             userRewards.length > 0 &&
-            userRewards.map((productData) => {
+            userRewards.map((productData, index) => {
               return (
-                <Product__Card type={"user"} data={productData}></Product__Card>
+                <Product__Card
+                  key={index}
+                  type={"user"} data={productData}></Product__Card>
               );
             })}
           {/* {userRewards.length > 0 &&
