@@ -109,11 +109,18 @@ const ClaimButton = styled.button`
 
 
 export default function Product__Card(props) {
+  const { claimed, earned, productName } = props.data["cardData"];
   const productDatas = props.data;
   const productType = props.type;
+
+  console.log(claimed);
     
   const formatValue = (value) => (value === 0 ? "-" : value);
   const formatEligibility = (value) => (value === true ? "Available" : "Unavailable");
+
+  const handleClaimButtonClick = () => { 
+    console.log("Claim Button Clicked");
+  }
 
   return (
     <MainContainer>
@@ -125,8 +132,7 @@ export default function Product__Card(props) {
         {productType === "user" && (
           <CardButton
             style={{
-              backgroundColor:
-                productType === "user" && "#FFF68C",
+              backgroundColor: productType === "user" && "#FFF68C",
               color: productType === "user" && "#000",
             }}
           >
@@ -138,19 +144,15 @@ export default function Product__Card(props) {
         <ProductInfo>
           <ProductNameContainer>
             <ProductName>Product</ProductName>
-            <ProductValue>{productDatas.cardData.productName}</ProductValue>
+            <ProductValue>{productName}</ProductValue>
           </ProductNameContainer>
           <ProductNameContainer>
             <ProductName>Total Earned</ProductName>
-            <ProductValue>
-              {formatValue(productDatas.cardData.earned)}
-            </ProductValue>
+            <ProductValue>{formatValue(earned)}</ProductValue>
           </ProductNameContainer>
           <ProductNameContainer>
             <ProductName>Total Claimed</ProductName>
-            <ProductValue>
-              {formatValue(productDatas.cardData.claimed)}
-            </ProductValue>
+            <ProductValue>{formatValue(claimed)}</ProductValue>
           </ProductNameContainer>
           <ProductDetailContainer>
             <ProductDetailText>Show Details</ProductDetailText>
@@ -174,7 +176,7 @@ export default function Product__Card(props) {
         <ProductInfo>
           <ProductNameContainer>
             <ProductName>Product</ProductName>
-            <ProductValue>{productDatas.cardData.productName}</ProductValue>
+            <ProductValue>{productName}</ProductValue>
           </ProductNameContainer>
           <ProductNameContainer>
             <ProductName>Eligibility</ProductName>
@@ -203,7 +205,9 @@ export default function Product__Card(props) {
               />
             </svg>
           </ProductDetailContainer>
-          <ClaimButton>Claim Reward</ClaimButton>
+          <ClaimButton onClick={handleClaimButtonClick}>
+            Claim Reward
+          </ClaimButton>
         </ProductInfo>
       )}
     </MainContainer>

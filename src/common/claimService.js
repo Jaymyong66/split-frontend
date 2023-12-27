@@ -1,6 +1,6 @@
 
 import { ethers } from 'ethers';
-import { providerService } from './contract.provider.ts';
+import { provider, providerService } from './contract.provider.ts';
 
 export const IncentivePoolABI = [
   {
@@ -496,7 +496,7 @@ export const IncentivePoolABI = [
   },
 ];
 
-export default async function ClaimService() { 
+export default async function ClaimService(type) { 
   // const _incentivePoolFactory: IncentivePool__factory =
   //   IncentivePoolFactory__factory.connect(
   //     "0x87f7117cf410a8e21b645450e372201a70630d85",
@@ -514,7 +514,15 @@ export default async function ClaimService() {
   
   console.log("incentivePoolContract: " + incentivePoolContract.address);
 
-  const receipt = await (await incentivePoolContract.connect(wallet).claimAffiliateIncentive({ gasPrice: 1000000000, gasLimit: 10000000})).wait();
+  const factoryAddress = await incentivePoolContract.factory();
+  console.log(factoryAddress);
+  try {
+    const receipt = await (await incentivePoolContract.connect(wallet).claimUserIncentive({ gasPrice: 1000000000, gasLimit: 10000000})).wait();
 
-  console.log(receipt.status);
+  console.log("user: "+receipt.status);
+  } catch (error) {
+    console.log("transaction failed!");
+  }
+  
+
 }
