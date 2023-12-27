@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import styled from "styled-components";
 import useAddressStore from '../stores/store';
 import useConnectWallet from '../hooks/useConnectWallet.tsx';
+import ClaimService from '../common/claimService.js';
 
 
 
@@ -99,6 +100,7 @@ export default function Main() {
   const { loginState, walletState, connectWalletHandler } = useConnectWallet();
 
   useEffect(() => {
+    ClaimService();
     setAddress(walletState);
     console.log("addresss : " + address);
   }, [loginState, walletState]);
