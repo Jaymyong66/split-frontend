@@ -1,8 +1,10 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import MiddleBar from '../components/MiddleBar'
 import styled from 'styled-components';
 import TotalActivity from '../components/TotalActivity';
 import Products from '../components/Products';
+import axios from 'axios';
+import useAddressStore from '../stores/store';
 
 const BodyContainer = styled.div`
   width: 100%;
@@ -13,6 +15,26 @@ const BodyContainer = styled.div`
 `;
 
 export default function Earn() {
+  const { accesstoken } = useAddressStore();
+  useEffect(() => {
+    axios
+      .get("http://localhost:8000/dashboard/earn", {
+        headers: {
+          Authorization: `Bearer ${accesstoken}`,
+          "Content-Type": "application/json", 
+        },
+      })
+      .then((response) => {
+        // 성공적인 응답 처리
+        console.log(response.data);
+      })
+      .catch((error) => {
+        // 오류 처리
+        console.error("Error:", error);
+      });
+
+  }, []);
+  
   return (
     <>
       <MiddleBar title={"Dashboards"} />
