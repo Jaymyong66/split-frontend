@@ -128,10 +128,15 @@ const ProductValueWithLogo = styled.span`
 export default function Product__Card(props) {
   const { claimed, earned, productName, eligibility, claimable } =
     props.data["cardData"];
+  // const { earned, productName, eligibility } =
+  //   props.data["cardData"];
   const productType = props.type;
 
-  // const claimed = 1;
+  // const claimed = 0;
+  // const claimable = 2;
 
+  const [claim, setClaim] = useState(claimed);
+  const [claimabled, setClaimabled] = useState(claimable);
   const [isAllClaimed, setIsAllClaimed] = useState(false);
   const [isRewardClaimed, setIsRewardClaimed] = useState(false);
 
@@ -156,11 +161,15 @@ export default function Product__Card(props) {
   const handleAffiliateClaimButtonClick = () => { 
     ClaimService('affiliate');
     setIsAllClaimed(true);
+    setClaim(earned);
+    alert("Claimed!");
   }
 
   const handleUserClaimButtonClick = () => {
     ClaimService("user");
     setIsRewardClaimed(true);
+    setClaimabled(0);
+    alert("Claimed!");
   };
 
   return (
@@ -209,8 +218,8 @@ export default function Product__Card(props) {
           <ProductNameContainer>
             <ProductName>Total Claimed</ProductName>
             <ProductValueWithLogo>
-              {formatValue(claimed)}
-              {formatValue(claimed) !== '-' && (
+              {formatValue(claim)}
+              {formatValue(claim) !== '-' && (
                 <img src="usdc.png" width="10px" height="10px"
                   style={{
                     marginLeft: '5px',
@@ -261,8 +270,8 @@ export default function Product__Card(props) {
             <ProductName>Claimable Reward</ProductName>
       
             <ProductValueWithLogo>
-              {formatValue(claimable)}
-              {formatValue(claimable) !== '-' && (
+              {formatValue(claimabled)}
+              {formatValue(claimabled) !== '-' && (
                 <img src="usdc.png" width="10px" height="10px"
                   style={{
                     marginLeft: '5px',
