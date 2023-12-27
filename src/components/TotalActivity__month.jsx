@@ -67,12 +67,12 @@ const DataTextContainer = styled.div`
 
 export default function TotalActivity__month(props) {
   const [
-    earned,
-    claimed,
-    productNum,
-    walletConnectNum,
-    transactionNum,
-    conversion,
+    earned=0,
+    claimed=0,
+    productNum=0,
+    walletConnectNum=0,
+    transactionNum=0,
+    conversion = 0,
   ] = Object.values(props.myValue);
   const { title } = props;
 
