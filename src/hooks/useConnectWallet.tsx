@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 import { useAccount, useConnect, useNetwork, useSignMessage } from "wagmi";
 import { apiService } from "../api/api.service.ts";
 import { SiweMessage } from "siwe";
+import useAddressStore from '../stores/store.js';
 
 export enum LoginState {
   NOT_STARTED = "not_started",
@@ -10,6 +11,8 @@ export enum LoginState {
 }
 
 export default function useConnectWallet() {
+  const { accesstoken, setAccesstoken } = useAddressStore();
+  
   const [loginState, setLoginState] = useState<LoginState>(
     LoginState.NOT_STARTED
   );
@@ -61,7 +64,8 @@ export default function useConnectWallet() {
       });
 
       // 4. 해당 메시지 및 서명으로 서버에 인증, JWT 토큰 가져옴
-      await apiService.signWallet(message, signature);
+      const data = await apiService.signWallet(message, signature);
+      setAccesstoken(data["accessToken"]);
 
       setLoginState(LoginState.DONE);
     } catch (error) {
