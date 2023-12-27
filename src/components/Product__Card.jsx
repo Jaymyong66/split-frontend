@@ -1,9 +1,3 @@
-
-
-
-
-
-
 import React from 'react'
 import styled from 'styled-components';
 
@@ -124,7 +118,6 @@ const ProductValueWithLogo = styled.span`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-
 `;
 
 
@@ -173,6 +166,7 @@ export default function Product__Card(props) {
                 <img src="usdc.png" width="10px" height="10px"
                   style={{
                     marginLeft: '5px',
+                    marginBottom: '1px'
                   }}
                 />
               )}
@@ -183,12 +177,13 @@ export default function Product__Card(props) {
             <ProductValueWithLogo>
               {formatValue(productDatas.cardData.claimed)}
               {formatValue(productDatas.cardData.claimed) !== '-' && (
-              <img src="usdc.png" width="10px" height="10px"
+                <img src="usdc.png" width="10px" height="10px"
                   style={{
                     marginLeft: '5px',
+                    marginBottom: '1px'
                   }}
-              />
-            )}
+                />
+              )}
             </ProductValueWithLogo>
           </ProductNameContainer>
           <ProductDetailContainer>
@@ -226,12 +221,13 @@ export default function Product__Card(props) {
             <ProductValueWithLogo>
               {formatValue(productDatas.cardData.claimable)}
               {formatValue(productDatas.cardData.claimable) !== '-' && (
-              <img src="usdc.png" width="10px" height="10px"
+                <img src="usdc.png" width="10px" height="10px"
                   style={{
                     marginLeft: '5px',
+                    marginBottom: '1px'
                   }}
-              />
-            )}
+                />
+              )}
             </ProductValueWithLogo>
           </ProductNameContainer>
           <ProductDetailContainer>
