@@ -76,7 +76,7 @@ export default function TotalActivity__month(props) {
   const { title } = props;
 
 
-  const formatValue = (value) => (value);
+  const formatValue = (value) => (value === 0 ? "-" : value);
 
 
   return (
