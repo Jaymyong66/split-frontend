@@ -50,7 +50,7 @@ const CardContainer = styled.div`
   flex-wrap: wrap;
 `;
 
-export default function Products() {
+export default function Products({ products }) {
   const [selectedOption, setSelectedOption] = useState("allOptions");
 
   const handleButtonClick = (option) => {
@@ -72,78 +72,86 @@ export default function Products() {
   //   },
   // ];
 
-  const productCards = [
-    {
-      cardType: "affiliate",
-      cardData: {
-        productName: "NameCard.io",
-        earned: 3.5,
-        claimed: 10,
-      },
-    },
-    {
-      cardType: "affiliate",
-      cardData: {
-        productName: "Second.io",
-        earned: 6.5,
-        claimed: 0,
-      },
-    },
-    {
-      cardType: "user",
-      cardData: {
-        productName: "NameCard.io",
-        eligibility: false,
-        claimable: 0,
-      },
-    },
-    {
-      cardType: "user",
-      cardData: {
-        productName: "Second.io",
-        eligibility: true,
-        claimable: 0.1,
-      },
-    },
-    {
-      cardType: "affiliate",
-      cardData: {
-        productName: "Second.io",
-        earned: 6.5,
-        claimed: 0,
-      },
-    },
-    {
-      cardType: "affiliate",
-      cardData: {
-        productName: "Second.io",
-        earned: 6.5,
-        claimed: 0,
-      },
-    },
-    {
-      cardType: "affiliate",
-      cardData: {
-        productName: "Second.io",
-        earned: 6.5,
-        claimed: 0,
-      },
-    },
-    {
-      cardType: "affiliate",
-      cardData: {
-        productName: "Second.io",
-        earned: 6.5,
-        claimed: 0,
-      },
-    },
-  ];
+  // const productCards = [
+  //   {
+  //     cardType: "affiliate",
+  //     cardData: {
+  //       productName: "NameCard.io",
+  //       earned: 3.5,
+  //       claimed: 10,
+  //     },
+  //   },
+  //   {
+  //     cardType: "affiliate",
+  //     cardData: {
+  //       productName: "Second.io",
+  //       earned: 6.5,
+  //       claimed: 0,
+  //     },
+  //   },
+  //   {
+  //     cardType: "user",
+  //     cardData: {
+  //       productName: "NameCard.io",
+  //       eligibility: false,
+  //       claimable: 0,
+  //     },
+  //   },
+  //   {
+  //     cardType: "user",
+  //     cardData: {
+  //       productName: "Second.io",
+  //       eligibility: true,
+  //       claimable: 0.1,
+  //     },
+  //   },
+  //   {
+  //     cardType: "affiliate",
+  //     cardData: {
+  //       productName: "Second.io",
+  //       earned: 6.5,
+  //       claimed: 0,
+  //     },
+  //   },
+  //   {
+  //     cardType: "affiliate",
+  //     cardData: {
+  //       productName: "Second.io",
+  //       earned: 6.5,
+  //       claimed: 0,
+  //     },
+  //   },
+  //   {
+  //     cardType: "affiliate",
+  //     cardData: {
+  //       productName: "Second.io",
+  //       earned: 6.5,
+  //       claimed: 0,
+  //     },
+  //   },
+  //   {
+  //     cardType: "affiliate",
+  //     cardData: {
+  //       productName: "Second.io",
+  //       earned: 6.5,
+  //       claimed: 0,
+  //     },
+  //   },
+  // ];
 
-  const affiliateProduct = productCards.filter((productData) => {
+  // const affiliateProduct = productCards.filter((productData) => {
+  //   return productData.cardType === "affiliate";
+  // });
+
+  // const userRewards = productCards.filter((productData) => {
+  //   return productData.cardType === "user";
+  // });
+
+  var affiliateProduct = products?.filter((productData) => {
     return productData.cardType === "affiliate";
   });
 
-  const userRewards = productCards.filter((productData) => {
+  var userRewards = products?.filter((productData) => {
     return productData.cardType === "user";
   });
 
@@ -174,30 +182,29 @@ export default function Products() {
           </ProductButton>
         </ButtonContainer>
         <CardContainer>
-          {(selectedOption === "allOptions" ||
-            selectedOption === "affiliate") &&
-            affiliateProduct.length > 0 &&
-            affiliateProduct.map((productData, index) => {
-              return (
-                <Product__Card
-                  key={index}
-                  type={"affiliate"}
-                  data={productData}
-                ></Product__Card>
-              );
-            })}
-          {(selectedOption === "allOptions" || selectedOption === "user") &&
-            userRewards.length > 0 &&
-            userRewards.map((productData, index) => {
-              return (
-                <Product__Card
-                  key={index}
-                  type={"user"}
-                  data={productData}
-                ></Product__Card>
-              );
-            })}
-        </CardContainer>
+  {(selectedOption === "allOptions" || selectedOption === "affiliate") &&
+    (affiliateProduct || []).length > 0 &&
+    affiliateProduct.map((productData, index) => {
+      return (
+        <Product__Card
+          key={index}
+          type={"affiliate"}
+          data={productData}
+        ></Product__Card>
+      );
+    })}
+  {(selectedOption === "allOptions" || selectedOption === "user") &&
+    (userRewards || []).length > 0 &&
+    userRewards.map((productData, index) => {
+      return (
+        <Product__Card
+          key={index}
+          type={"user"}
+          data={productData}
+        ></Product__Card>
+      );
+    })}
+</CardContainer>
       </BodyContainer>
     </MainContainer>
   );

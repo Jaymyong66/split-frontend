@@ -21,7 +21,7 @@ const BodyContainer = styled.div`
   justify-content: space-between;
 `;
 
-const GetEarnDashboardRes =  {
+const GetEarnDashboardRes = {
   monthlyTotalDashboard: {
     earned: 9.5,
     claimed: 0,
@@ -41,19 +41,25 @@ const GetEarnDashboardRes =  {
   products: [],
 }
 
-const totalActivities = [
-  { title: "In This Month", data: GetEarnDashboardRes.monthlyTotalDashboard },
-  { title: "Entire Period", data: GetEarnDashboardRes.totalDashboard },
-];
+// const totalActivities = [
+//   { title: "In This Month", data: GetEarnDashboardRes.monthlyTotalDashboard },
+//   { title: "Entire Period", data: GetEarnDashboardRes.totalDashboard },
+// ];
 
-export default function TotalActivity() {
+export default function TotalActivity({ monthly, total }) {
+  var totalActivities = [
+    { title: "In This Month", data: monthly ?? {} },
+    { title: "Entire Period", data: total ?? {} },
+  ];
+
   return (
     <MainContainer>
       <BodyContainer>
-        {totalActivities.map((activity,index) => {
+        {totalActivities.map((activity, index) => {
           return <TotalActivity__month key={index} myValue={activity.data} title={activity.title} />
         })}
       </BodyContainer>
     </MainContainer>
   );
 }
+
