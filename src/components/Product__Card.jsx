@@ -76,7 +76,7 @@ const ProductValue = styled.span`
 `;
 
 const ProductDetailContainer = styled.div`
-  width: 62px;
+  width: 71px;
   height: 0.625rem;
 
   align-self: flex-end;
@@ -84,6 +84,7 @@ const ProductDetailContainer = styled.div`
 `;
 
 const ProductDetailText = styled.span`
+  
   color: #323232;
   text-align: center;
   font-family: Inter;
@@ -220,7 +221,7 @@ export default function Product__Card(props) {
             </ProductValueWithLogo>
           </ProductNameContainer>
           <ProductDetailContainer>
-            <ProductDetailText>Show Details</ProductDetailText>
+            <ProductDetailText lText>Show Details</ProductDetailText>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="8"
@@ -258,7 +259,7 @@ export default function Product__Card(props) {
           </ProductNameContainer>
           <ProductNameContainer>
             <ProductName>Claimable Reward</ProductName>
-            <ProductValue>{formatValue(claimable)}</ProductValue>
+      
             <ProductValueWithLogo>
               {formatValue(claimable)}
               {formatValue(claimable) !== '-' && (

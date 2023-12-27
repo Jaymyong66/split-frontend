@@ -77,7 +77,9 @@ export default function TotalActivity__month(props) {
   const { title } = props;
 
 
-  const formatValue = (value) => (value === 0 ? "-" : value  > 10000 ? value * (10 ** (-18)) : value);
+  const formatValue = (value) => (value === 0 ? "-" : value > 10000 ? value * (10 ** (-18)) : value);
+    const formatValuePercent = (value) =>
+      value === 0 ? "-" : value > 10000 ? value * 10 ** -18 + "%" : value + "%";
 
 
   return (
@@ -114,7 +116,7 @@ export default function TotalActivity__month(props) {
         </ContentContainer>
         <ContentContainer>
           <span>Conversion </span>
-          <NumberContnent>{formatValue(conversion)} </NumberContnent>
+          <NumberContnent>{formatValuePercent(conversion)} </NumberContnent>
         </ContentContainer>
       </BodyContainer>
     </MainContainer>
