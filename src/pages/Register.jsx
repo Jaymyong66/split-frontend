@@ -101,14 +101,14 @@ const Step2GuideText = styled.div`
 
   color: black;
   font-family: Inter;
-  font-size: 15px;
+  font-size: 20px;
 `;
 
 const Step3GuideContainer = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
+  align-items: flex-start;
   
   gap: 1rem;
 `;
@@ -121,6 +121,13 @@ const Step3GuideText = styled.div`
   color: black;
   font-family: Inter;
   font-size: 15px;
+`;
+
+const GuideText = styled.div`
+  text-align: left;
+  font-size: 25px;
+  font-weight: 700;
+  margin-top: 20px;
 `;
 
 const RowContainer = styled.div`
@@ -182,7 +189,7 @@ export default function Register() {
   const handleClickGetKey = async () => {
     setLoading(true);
     setStep((prevStep) => prevStep + 1);
-    const accessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZGRyZXNzIjoiMHg3NDc2NDk0YWFkODBhNTA0MTczMzY0ZThlZDBiYzFjNjViZDg2NjBiIiwiaWF0IjoxNzAzNjI5NTM2LCJleHAiOjE4MDM2Mjk1MzZ9.8u5vaQmT4CU-JEsCZqpOvCNTDIfYeg0qz8zVK5G-Vis";
+    const accessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZGRyZXNzIjoiMHgzY2EyMWM4MzY0YTZiMTMyZTMwNTA4Y2UwMzA2NDlhOTg4M2Q0ZDhkIiwiaWF0IjoxNzAzNjU2MzkwLCJleHAiOjE4MDM2NTYzOTB9.B1Ft3josNxtNmzygE8KrMHFILoL5dJQ7VcI1nbCyfrk";
 
     const productData = {
       name: productInfo.name,
@@ -312,7 +319,12 @@ export default function Register() {
 
           {step === 2 && (
             <Step2Container>
-              <Step2GuideText>Pool Guide</Step2GuideText>
+              <Step2GuideText>
+              Pool Guide
+              <div style={{height:"30px"}}/>
+              <img src="pool_guide.png" alt="guide" width="500px" height="450px" />
+
+              </Step2GuideText>
               <InputContainer>
                 <InputWindow
                   type="text"
@@ -379,17 +391,46 @@ export default function Register() {
           {step === 3 && (
             <Step3GuideContainer>
               {loading ? (
-                <p>Loading...</p>
+                <p style={{
+                  textAlign: "left",
+                  fontSize: "20px"
+                }}>Loading...</p>
               ) : (
                 <>
                   <Step3GuideText>SDK Key: {sdkKey}</Step3GuideText>
+                  <GuideText>
+                    Add the code below in your website "index.html" file to see if "Split initialized" is successful!                  </GuideText>
                   <Step3GuideText
                     style={{
                       height: "20rem",
+                      whiteSpace: "pre-wrap",
+                      backgroundColor: "beige",
+                      paddingTop: '0px',
+                      padding: "10px0px 0px -40px",
+                      fontWeight: '700',
                     }}
                   >
-                    <img src='example.png' alt="example" width="600rem" height="250rem" margin="0 auto" />
+                    {`
+                      <html>
+                        <head>
 
+                          <!-- Include splitsdk -->
+                          <script type="text/javascript" src="https://split.xyz/splitsdk/splitsdk.js"></script>
+
+                        </head>
+
+                        <body>
+
+                          <div id="root"></div>
+
+                          <script>
+                            var split = new Split.sdk.constructor();
+                            split.init("YOUR_SDK_KEY"); 
+                          </script>
+
+                        </body>
+                      </html>
+                    `}
                   </Step3GuideText>
                   <RowContainer>
                     <SubmitButton type="button" onClick={handleAgain}>

@@ -17,11 +17,11 @@ const BodyContainer = styled.div`
 export default function Earn() {
   const { accesstoken } = useAddressStore();
   useEffect(() => {
+    console.log(accesstoken);
     axios
       .get("http://localhost:8000/dashboard/earn", {
         headers: {
           Authorization: `Bearer ${accesstoken}`,
-          "Content-Type": "application/json", 
         },
       })
       .then((response) => {
