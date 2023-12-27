@@ -2,9 +2,6 @@ import React, { useEffect } from 'react'
 import styled from "styled-components";
 import useAddressStore from '../stores/store';
 import useConnectWallet from '../hooks/useConnectWallet.tsx';
-import ClaimService from '../common/claimService.js';
-
-
 
 const BodyContainer = styled.div`
   position: relative;
@@ -29,7 +26,7 @@ const LandingTextContainer = styled.div`
 const Maintitle = styled.div`
   position: absolute;
   color: white;
-  font-family: var(--font-googleInterRegular);
+  font-family: Inter;
   font-size: 60px;
 `;
 
@@ -37,7 +34,7 @@ const Subtitle = styled.div`
   position: absolute;
   top: 100px;
   color: white;
-  font-family: var(--font-googleInterRegular);
+  font-family: Inter;
   font-size: 30px;
 `;
 
@@ -46,13 +43,13 @@ const LandingButtonElseContainer = styled.div`
   top: 50%;
   left: 8%;
   color: white;
-  font-family: var(--font-googleInterRegular);
+  font-family: Inter;
   font-size: 60px;
 `;
 
 const LandingButton = styled.button`
   color: black;
-  font-family: var(--font-googleInterRegular);
+  font-family: Inter;
   font-size: 20px;
   background: white;
   padding: 20px 50px;
@@ -81,7 +78,7 @@ const LandingImage = styled.img`
 
 const LandingButtonGuide = styled.div`
   color: white;
-  font-family: var(--font-googleInterRegular);
+  font-family: Inter;
   font-size: 15px;
   position: absolute;
   left: 8%;
@@ -100,17 +97,13 @@ export default function Main() {
   const { loginState, walletState, connectWalletHandler } = useConnectWallet();
 
   useEffect(() => {
-    ClaimService();
     setAddress(walletState);
-    console.log("addresss : " + address);
+    //console.log("addresss : " + address);
   }, [loginState, walletState]);
 
   const handleClick = () => {
     if (address === "") {
       connectWalletHandler();
-    }
-    else {
-      console.log("address : " + address);
     }
   };
   return (

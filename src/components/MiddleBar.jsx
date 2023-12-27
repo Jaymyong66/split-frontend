@@ -22,9 +22,8 @@ const ContentContainer = styled.div`
 `;
 
 const Maintitle = styled.div`
-
   color: white;
-  font-family: var(--font-googleInterRegular);
+  font-family: Inter;
   font-size: 40px;
 `;
 

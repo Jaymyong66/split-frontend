@@ -12,7 +12,7 @@ const MainContainer = styled.div`
 const Maintitle = styled.div`
   
   color: black;
-  font-family: var(--font-googleInterRegular);
+  font-family: Inter;
   font-size: 20px;
 `;
 
@@ -30,13 +30,13 @@ const ContentContainer = styled.div`
   margin: 20px;
   color: #323232;
 
-  font-family: var(--font-googleInterRegular);
+  font-family: Inter;
   font-size: 14px;
 `;
 
 const NumberContnent = styled.span`
   color: #000000;
-  font-family: var(--font-googleInterRegular);
+  font-family: Inter;
   font-size: 20px;
 `;
 
@@ -52,7 +52,8 @@ const QuestionImage = styled.img`
 
 const MainTitleContainer = styled.div`
   display: flex;
-  justify-content: space-between;`;
+  justify-content: space-between;
+`;
 
 const DataTextContainer = styled.div`
   color: var(--Black-Black---07, #7e7e7e);
