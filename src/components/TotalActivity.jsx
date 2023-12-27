@@ -41,11 +41,6 @@ const GetEarnDashboardRes = {
   products: [],
 }
 
-// const totalActivities = [
-//   { title: "In This Month", data: GetEarnDashboardRes.monthlyTotalDashboard },
-//   { title: "Entire Period", data: GetEarnDashboardRes.totalDashboard },
-// ];
-
 export default function TotalActivity({ monthly, total }) {
   var totalActivities = [
     { title: "In This Month", data: monthly ?? {} },

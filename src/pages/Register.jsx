@@ -21,10 +21,10 @@ const RegisterStep = styled.div`
   height: 3rem;
   background: #032746;
   color: white;
-  font-family: var(--font-googleInterRegular);
+  font-family: Inter;
   font-size: 20px;
-  border : 1.5px solid #032746;
-  
+  border: 1.5px solid #032746;
+
   align-items: center;
 `;
 

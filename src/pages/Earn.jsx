@@ -18,7 +18,7 @@ export default function Earn() {
   const { accesstoken } = useAddressStore();
   const [dashboardData, setDashboardData] = useState({});
   useEffect(() => {
-    console.log(accesstoken);
+    //console.log(accesstoken);
     axios
       .get("http://localhost:8000/dashboard/earn", {
         headers: {
@@ -27,7 +27,7 @@ export default function Earn() {
       })
       .then((response) => {
         // 성공적인 응답 처리
-        console.log(response.data);
+        //console.log(response.data);
         setDashboardData(response.data);
       })
       .catch((error) => {

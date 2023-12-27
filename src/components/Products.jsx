@@ -20,7 +20,7 @@ const BodyContainer = styled.div`
 
 const Maintitle = styled.div`
   color: black;
-  font-family: var(--font-googleInterRegular);
+  font-family: Inter;
   font-size: 20px;
 `;
 
@@ -34,7 +34,7 @@ const ButtonContainer = styled.div`
 const ProductButton = styled.button`
   background-color: #032746;
   color: white;
-  font-family: var(--font-googleInterRegular);
+  font-family: Inter;
   font-size: 12px;
   padding: 5px 8px 5px 8px;
   border-radius: 5px;
@@ -58,94 +58,6 @@ export default function Products({ products }) {
       prevOption === option ? "allOptions" : option
     );
   };
-
-  // const productCards = [
-  //   {
-  //     cardType: "affiliate",
-  //     cardData: {
-  //       productName: "NameCard.io",
-  //       earned: 3.5,
-  //       claimed: 0,
-  //       eligibility: false,
-  //       claimable: 0,
-  //     },
-  //   },
-  // ];
-
-  // const productCards = [
-  //   {
-  //     cardType: "affiliate",
-  //     cardData: {
-  //       productName: "NameCard.io",
-  //       earned: 3.5,
-  //       claimed: 10,
-  //     },
-  //   },
-  //   {
-  //     cardType: "affiliate",
-  //     cardData: {
-  //       productName: "Second.io",
-  //       earned: 6.5,
-  //       claimed: 0,
-  //     },
-  //   },
-  //   {
-  //     cardType: "user",
-  //     cardData: {
-  //       productName: "NameCard.io",
-  //       eligibility: false,
-  //       claimable: 0,
-  //     },
-  //   },
-  //   {
-  //     cardType: "user",
-  //     cardData: {
-  //       productName: "Second.io",
-  //       eligibility: true,
-  //       claimable: 0.1,
-  //     },
-  //   },
-  //   {
-  //     cardType: "affiliate",
-  //     cardData: {
-  //       productName: "Second.io",
-  //       earned: 6.5,
-  //       claimed: 0,
-  //     },
-  //   },
-  //   {
-  //     cardType: "affiliate",
-  //     cardData: {
-  //       productName: "Second.io",
-  //       earned: 6.5,
-  //       claimed: 0,
-  //     },
-  //   },
-  //   {
-  //     cardType: "affiliate",
-  //     cardData: {
-  //       productName: "Second.io",
-  //       earned: 6.5,
-  //       claimed: 0,
-  //     },
-  //   },
-  //   {
-  //     cardType: "affiliate",
-  //     cardData: {
-  //       productName: "Second.io",
-  //       earned: 6.5,
-  //       claimed: 0,
-  //     },
-  //   },
-  // ];
-
-  // const affiliateProduct = productCards.filter((productData) => {
-  //   return productData.cardType === "affiliate";
-  // });
-
-  // const userRewards = productCards.filter((productData) => {
-  //   return productData.cardType === "user";
-  // });
 
   var affiliateProduct = products?.filter((productData) => {
     return productData.cardType === "affiliate";
