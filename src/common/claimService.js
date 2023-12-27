@@ -497,12 +497,6 @@ export const IncentivePoolABI = [
 ];
 
 export default async function ClaimService(type) { 
-  // const _incentivePoolFactory: IncentivePool__factory =
-  //   IncentivePoolFactory__factory.connect(
-  //     "0x87f7117cf410a8e21b645450e372201a70630d85",
-  //     provider
-  //   );
-
   const provider = providerService.getProvider();
   const wallet = providerService.getWallet();
 
@@ -512,14 +506,28 @@ export default async function ClaimService(type) {
     provider
   );
   
-  console.log("incentivePoolContract: " + incentivePoolContract.address);
+  // console.log("incentivePoolContract: " + incentivePoolContract.address);
 
-  const factoryAddress = await incentivePoolContract.factory();
-  console.log(factoryAddress);
+  // const factoryAddress = await incentivePoolContract.factory();
+  // console.log(factoryAddress);
+
   try {
-    const receipt = await (await incentivePoolContract.connect(wallet).claimUserIncentive({ gasPrice: 1000000000, gasLimit: 10000000})).wait();
+    if (type === "affiliate") { 
+      console.log("affiliate");
+      const receipt = await (await incentivePoolContract.connect(wallet).claimAffiliateIncentive({ gasPrice: 1000000000, gasLimit: 10000000})).wait();
+      console.log("affiliate: "+receipt.status);
+    }
 
-  console.log("user: "+receipt.status);
+    if (type === "user") {  
+      console.log("user");
+      const receipt = await (
+        await incentivePoolContract
+          .connect(wallet)
+          .claimUserIncentive({ gasPrice: 1000000000, gasLimit: 10000000 })
+      ).wait();
+      console.log("user: " + receipt.status);
+    }
+    
   } catch (error) {
     console.log("transaction failed!");
   }

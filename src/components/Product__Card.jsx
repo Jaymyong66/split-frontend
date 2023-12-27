@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components';
+import ClaimService from '../common/claimService';
 
 const MainContainer = styled.div`
   width: 230px;
@@ -27,7 +28,7 @@ const ButtonContainer = styled.div`
 const CardButton = styled.button`
   background-color: #0a83e8;
   color: white;
-  font-family: var(--font-googleInterRegular);
+  font-family: Inter;
   font-size: 8px;
   padding: 5px 8px 5px 8px;
   border-radius: 5px;
@@ -57,7 +58,7 @@ const ProductNameContainer = styled.div`
 const ProductName = styled.span`
   color: #323232;
   text-align: center;
-  font-family: var(--font-googleInterRegular);
+  font-family: Inter;
   font-size: 10px;
   font-style: normal;
   font-weight: 500;
@@ -67,7 +68,7 @@ const ProductName = styled.span`
 const ProductValue = styled.span`
   color: #000;
   text-align: center;
-  font-family: var(--font-googleInterRegular);
+  font-family: Inter;
   font-size: 12px;
   font-style: normal;
   font-weight: 500;
@@ -85,7 +86,7 @@ const ProductDetailContainer = styled.div`
 const ProductDetailText = styled.span`
   color: #323232;
   text-align: center;
-  font-family: var(--font-googleInterRegular);
+  font-family: Inter;
   font-size: 0.5rem;
   font-style: normal;
   font-weight: 500;
@@ -104,23 +105,48 @@ const ClaimButton = styled.button`
   color: white;
   margin-top: 0.625rem;
 
+  &:disabled {
+    cursor: not-allowed;
+  }
 `;
 
-
-
 export default function Product__Card(props) {
-  const { claimed, earned, productName } = props.data["cardData"];
-  const productDatas = props.data;
+  const { claimed, earned, productName, eligibility, claimable } =
+    props.data["cardData"];
   const productType = props.type;
 
-  console.log(claimed);
-    
+  // const claimed = 1;
+
+  const [isAllClaimed, setIsAllClaimed] = useState(false);
+  const [isRewardClaimed, setIsRewardClaimed] = useState(false);
+
+  useEffect(() => {
+    if (earned - claimed === 0) {
+      setIsAllClaimed(true);
+    } else {
+      setIsAllClaimed(false);
+    }
+
+    if (claimable === 0) { 
+      setIsRewardClaimed(true);
+    } else {
+      setIsRewardClaimed(false); 
+    }
+
+  }, [claimed, earned, claimable]);
+
   const formatValue = (value) => (value === 0 ? "-" : value);
   const formatEligibility = (value) => (value === true ? "Available" : "Unavailable");
 
-  const handleClaimButtonClick = () => { 
-    console.log("Claim Button Clicked");
+  const handleAffiliateClaimButtonClick = () => { 
+    ClaimService('affiliate');
+    setIsAllClaimed(true);
   }
+
+  const handleUserClaimButtonClick = () => {
+    ClaimService("user");
+    setIsRewardClaimed(true);
+  };
 
   return (
     <MainContainer>
@@ -169,7 +195,16 @@ export default function Product__Card(props) {
               />
             </svg>
           </ProductDetailContainer>
-          <ClaimButton>Claim Reward</ClaimButton>
+          <ClaimButton
+            onClick={handleAffiliateClaimButtonClick}
+            style={{
+              backgroundColor: isAllClaimed === true ? "#989898" : "#032746",
+              color: isAllClaimed === true ? "#FFF" : "white",
+            }}
+            disabled={isAllClaimed}
+          >
+            Claim Reward
+          </ClaimButton>
         </ProductInfo>
       )}
       {productType === "user" && (
@@ -180,15 +215,11 @@ export default function Product__Card(props) {
           </ProductNameContainer>
           <ProductNameContainer>
             <ProductName>Eligibility</ProductName>
-            <ProductValue>
-              {formatEligibility(productDatas.cardData.eligibility)}
-            </ProductValue>
+            <ProductValue>{formatEligibility(eligibility)}</ProductValue>
           </ProductNameContainer>
           <ProductNameContainer>
             <ProductName>Claimable Reward</ProductName>
-            <ProductValue>
-              {formatValue(productDatas.cardData.claimable)}
-            </ProductValue>
+            <ProductValue>{formatValue(claimable)}</ProductValue>
           </ProductNameContainer>
           <ProductDetailContainer>
             <ProductDetailText>Show Details</ProductDetailText>
@@ -205,7 +236,14 @@ export default function Product__Card(props) {
               />
             </svg>
           </ProductDetailContainer>
-          <ClaimButton onClick={handleClaimButtonClick}>
+          <ClaimButton
+            onClick={handleUserClaimButtonClick}
+            style={{
+              backgroundColor: isRewardClaimed === true ? "#989898" : "#032746",
+              color: isRewardClaimed === true ? "#FFF" : "white",
+            }}
+            disabled={isRewardClaimed}
+          >
             Claim Reward
           </ClaimButton>
         </ProductInfo>
