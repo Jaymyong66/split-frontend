@@ -1,3 +1,9 @@
+
+
+
+
+
+
 import React from 'react'
 import styled from 'styled-components';
 
@@ -106,21 +112,29 @@ const ClaimButton = styled.button`
 
 `;
 
+const ProductValueWithLogo = styled.span`
+  color: #000;
+  text-align: center;
+  font-family: var(--font-googleInterRegular);
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+`;
+
 
 
 export default function Product__Card(props) {
-  const { claimed, earned, productName } = props.data["cardData"];
   const productDatas = props.data;
   const productType = props.type;
 
-  console.log(claimed);
-    
-  const formatValue = (value) => (value === 0 ? "-" : value);
+  const formatValue = (value) => (value === 0 ? "-" : value * (10 ** (-18)));
   const formatEligibility = (value) => (value === true ? "Available" : "Unavailable");
-
-  const handleClaimButtonClick = () => { 
-    console.log("Claim Button Clicked");
-  }
 
   return (
     <MainContainer>
@@ -132,7 +146,8 @@ export default function Product__Card(props) {
         {productType === "user" && (
           <CardButton
             style={{
-              backgroundColor: productType === "user" && "#FFF68C",
+              backgroundColor:
+                productType === "user" && "#FFF68C",
               color: productType === "user" && "#000",
             }}
           >
@@ -144,15 +159,37 @@ export default function Product__Card(props) {
         <ProductInfo>
           <ProductNameContainer>
             <ProductName>Product</ProductName>
-            <ProductValue>{productName}</ProductValue>
+            <ProductValue>{productDatas.cardData.productName}</ProductValue>
           </ProductNameContainer>
           <ProductNameContainer>
             <ProductName>Total Earned</ProductName>
-            <ProductValue>{formatValue(earned)}</ProductValue>
+            <ProductValueWithLogo>
+              {formatValue(productDatas.cardData.earned)}
+              {/* <img src="usdc.png" width="10px" height="10px"
+                  style={{
+                    marginLeft: '5px',
+                  }} /> */}
+              {formatValue(productDatas.cardData.earned) !== '-' && (
+                <img src="usdc.png" width="10px" height="10px"
+                  style={{
+                    marginLeft: '5px',
+                  }}
+                />
+              )}
+            </ProductValueWithLogo>
           </ProductNameContainer>
           <ProductNameContainer>
             <ProductName>Total Claimed</ProductName>
-            <ProductValue>{formatValue(claimed)}</ProductValue>
+            <ProductValueWithLogo>
+              {formatValue(productDatas.cardData.claimed)}
+              {formatValue(productDatas.cardData.claimed) !== '-' && (
+              <img src="usdc.png" width="10px" height="10px"
+                  style={{
+                    marginLeft: '5px',
+                  }}
+              />
+            )}
+            </ProductValueWithLogo>
           </ProductNameContainer>
           <ProductDetailContainer>
             <ProductDetailText>Show Details</ProductDetailText>
@@ -176,7 +213,7 @@ export default function Product__Card(props) {
         <ProductInfo>
           <ProductNameContainer>
             <ProductName>Product</ProductName>
-            <ProductValue>{productName}</ProductValue>
+            <ProductValue>{productDatas.cardData.productName}</ProductValue>
           </ProductNameContainer>
           <ProductNameContainer>
             <ProductName>Eligibility</ProductName>
@@ -186,9 +223,16 @@ export default function Product__Card(props) {
           </ProductNameContainer>
           <ProductNameContainer>
             <ProductName>Claimable Reward</ProductName>
-            <ProductValue>
+            <ProductValueWithLogo>
               {formatValue(productDatas.cardData.claimable)}
-            </ProductValue>
+              {formatValue(productDatas.cardData.claimable) !== '-' && (
+              <img src="usdc.png" width="10px" height="10px"
+                  style={{
+                    marginLeft: '5px',
+                  }}
+              />
+            )}
+            </ProductValueWithLogo>
           </ProductNameContainer>
           <ProductDetailContainer>
             <ProductDetailText>Show Details</ProductDetailText>
@@ -205,11 +249,10 @@ export default function Product__Card(props) {
               />
             </svg>
           </ProductDetailContainer>
-          <ClaimButton onClick={handleClaimButtonClick}>
-            Claim Reward
-          </ClaimButton>
+          <ClaimButton>Claim Reward</ClaimButton>
         </ProductInfo>
       )}
     </MainContainer>
   );
 }
+
