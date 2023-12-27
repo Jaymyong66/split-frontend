@@ -110,6 +110,20 @@ const ClaimButton = styled.button`
   }
 `;
 
+const ProductValueWithLogo = styled.span`
+  color: #000;
+  text-align: center;
+  font-family: var(--font-googleInterRegular);
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+`;
+
 export default function Product__Card(props) {
   const { claimed, earned, productName, eligibility, claimable } =
     props.data["cardData"];
@@ -135,7 +149,7 @@ export default function Product__Card(props) {
 
   }, [claimed, earned, claimable]);
 
-  const formatValue = (value) => (value === 0 ? "-" : value);
+  const formatValue = (value) => (value === 0 ? "-" : value * (10 ** (-18)));
   const formatEligibility = (value) => (value === true ? "Available" : "Unavailable");
 
   const handleAffiliateClaimButtonClick = () => { 
@@ -158,7 +172,8 @@ export default function Product__Card(props) {
         {productType === "user" && (
           <CardButton
             style={{
-              backgroundColor: productType === "user" && "#FFF68C",
+              backgroundColor:
+                productType === "user" && "#FFF68C",
               color: productType === "user" && "#000",
             }}
           >
@@ -174,11 +189,35 @@ export default function Product__Card(props) {
           </ProductNameContainer>
           <ProductNameContainer>
             <ProductName>Total Earned</ProductName>
-            <ProductValue>{formatValue(earned)}</ProductValue>
+            <ProductValueWithLogo>
+              {formatValue(earned)}
+              {/* <img src="usdc.png" width="10px" height="10px"
+                  style={{
+                    marginLeft: '5px',
+                  }} /> */}
+              {formatValue(earned) !== '-' && (
+                <img src="usdc.png" width="10px" height="10px"
+                  style={{
+                    marginLeft: '5px',
+                    marginBottom: '1px'
+                  }}
+                />
+              )}
+            </ProductValueWithLogo>
           </ProductNameContainer>
           <ProductNameContainer>
             <ProductName>Total Claimed</ProductName>
-            <ProductValue>{formatValue(claimed)}</ProductValue>
+            <ProductValueWithLogo>
+              {formatValue(claimed)}
+              {formatValue(claimed) !== '-' && (
+                <img src="usdc.png" width="10px" height="10px"
+                  style={{
+                    marginLeft: '5px',
+                    marginBottom: '1px'
+                  }}
+                />
+              )}
+            </ProductValueWithLogo>
           </ProductNameContainer>
           <ProductDetailContainer>
             <ProductDetailText>Show Details</ProductDetailText>
@@ -220,6 +259,18 @@ export default function Product__Card(props) {
           <ProductNameContainer>
             <ProductName>Claimable Reward</ProductName>
             <ProductValue>{formatValue(claimable)}</ProductValue>
+            <ProductValueWithLogo>
+              {formatValue(claimable)}
+              {formatValue(claimable) !== '-' && (
+                <img src="usdc.png" width="10px" height="10px"
+                  style={{
+                    marginLeft: '5px',
+                    marginBottom: '1px'
+                  }}
+                />
+              )}
+            </ProductValueWithLogo>
+
           </ProductNameContainer>
           <ProductDetailContainer>
             <ProductDetailText>Show Details</ProductDetailText>
@@ -246,8 +297,10 @@ export default function Product__Card(props) {
           >
             Claim Reward
           </ClaimButton>
+
         </ProductInfo>
       )}
     </MainContainer>
   );
 }
+

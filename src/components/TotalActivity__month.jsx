@@ -77,7 +77,7 @@ export default function TotalActivity__month(props) {
   const { title } = props;
 
 
-  const formatValue = (value) => (value === 0 ? "-" : value);
+  const formatValue = (value) => (value === 0 ? "-" : value  > 10000 ? value * (10 ** (-18)) : value);
 
 
   return (
